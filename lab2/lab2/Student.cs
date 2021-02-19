@@ -1,4 +1,6 @@
-﻿namespace lab2
+﻿using System;
+
+namespace lab2
 {
     public class Student
     {
@@ -17,5 +19,17 @@
             _donater = donater;
         }
 
+        private static double calculateAverage(int[] data)
+        {
+            double result = 0;
+            int sum = 0;
+            foreach (int mark in data)
+            {
+                sum += mark;
+            }
+            result = Convert.ToDouble(sum) / data.Length;
+
+            return result;
+        }
     }
 }

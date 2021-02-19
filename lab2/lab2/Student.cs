@@ -47,5 +47,24 @@ namespace lab2
             student1 = student2;
             student2 = student;
         }
+
+        private static string[,] toMatrix(Student[] students)
+        {
+            string[,] matrix = new string[students.Length, 2];
+            for (int i = 0; i < students.Length; i++)
+            {
+                matrix[i, 0] = students[i]._name;
+                matrix[i, 1] = students[i].averageMark.ToString();
+            }
+            return matrix;
+        }
+
+        private static void outMatrix(string[,] matrix)
+        {
+            for (int i = 0; i < matrix.Length/2; i++)
+            {
+                Console.WriteLine($"{matrix[i, 0]}'s average mark is {matrix[i, 1]}");
+            }
+        }
     }
 }

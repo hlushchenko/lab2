@@ -29,7 +29,7 @@ namespace lab2
             return result;
         }
 
-        public static void sortStudents(Student[] students)
+        public static void sortStudents(Student[] students) //this function is sorting student by their average mark :)
         {
             for (int i = 0; i < students.Length - 1; i++)
             {
@@ -40,7 +40,7 @@ namespace lab2
             }
         }
 
-        private static void swapStudents(Student student1, Student student2)
+        private static void swapStudents(Student student1, Student student2) //this function allows to swap 2 students (necessary for sortStudents function) :)
         {
             Student student;
             student = student1;
@@ -48,7 +48,7 @@ namespace lab2
             student2 = student;
         }
 
-        private static string[,] toMatrix(Student[] students)
+        private static string[,] toMatrix(Student[] students) //this function converts array of student to the matrix :)
         {
             string[,] matrix = new string[students.Length, 2];
             for (int i = 0; i < students.Length; i++)
@@ -59,7 +59,7 @@ namespace lab2
             return matrix;
         }
 
-        private static void outMatrix(string[,] matrix)
+        private static void outMatrix(string[,] matrix) //this function is printing the name of the student and his average mark :)
         {
             for (int i = 0; i < matrix.Length/2; i++)
             {

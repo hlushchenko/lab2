@@ -25,7 +25,7 @@ namespace lab2
             {
                 sum += mark;
             }
-            result = Convert.ToDouble(sum) / data.Length;
+            result = Math.Round(Convert.ToDouble(sum) / data.Length, 3);
 
             return result;
         }

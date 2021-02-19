@@ -7,8 +7,16 @@ namespace lab2
         static void Main(string[] args)
         {
             var csvFile = new CsvManager("/students1.csv");
-            string[,] stas = csvFile.ToMatrix();
-            Student[] students = Student.fromMatrix(stas);
+
+            Utilities.outText("The list of all students:", 30);
+            string[,] allStudents = csvFile.ToMatrix();
+            Utilities.outMatrix(allStudents);
+
+            Utilities.outText("The list of students, who is learning for free:", 30);
+            Student[] students = Student.fromMatrix(allStudents);
+            Utilities.outStudents(students);
+
+            Console.ReadKey();
         }
     }
 }

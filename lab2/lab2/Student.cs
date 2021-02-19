@@ -17,7 +17,12 @@ namespace lab2
             _donater = donater;
         }
 
-        private static double calculateAverage(int[] data) //this function was created to calculate the average value of marks :)
+        public static string getName(Student student)
+        {
+            return student._name;
+        }
+
+        public static double calculateAverage(int[] data) //this function was created to calculate the average value of marks :)
         {
             double result = 0;
             int sum = 0;

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
 using System.IO;
+using System.Linq;
 
 namespace lab2
 {
@@ -10,10 +10,11 @@ namespace lab2
         private string _path;
         public int Length;
         public int Width;
+
         public CsvManager(string path)
         {
             _path = path;
-            var sr = new StreamReader(_path); 
+            var sr = new StreamReader(_path);
             TableSizes();
         }
 
@@ -34,7 +35,7 @@ namespace lab2
                 {
                     string[,] output = new string[Length, Width];
                     sr.ReadLine();
-                    for  (int i = 0; i < Length; i++)
+                    for (int i = 0; i < Length; i++)
                     {
                         string[] currentLine = sr.ReadLine().Split(",", StringSplitOptions.RemoveEmptyEntries);
                         for (int j = 0; j < Width; j++)
@@ -42,15 +43,30 @@ namespace lab2
                             output[i, j] = currentLine[j];
                         }
                     }
+
                     return output;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine($"Incorrect file: \n {e}");
             }
 
             return null;
+        }
+
+        public static string[] FindCsv(string path)
+        {
+            string[] allfiles = Directory.GetFiles(path);
+            string csvs = "";
+            foreach (var file in allfiles)
+            {
+                if (file.Contains(".csv"))
+                {
+                    csvs = $"{csvs} {file}";
+                }
+            }
+            return csvs.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

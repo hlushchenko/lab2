@@ -6,7 +6,8 @@ namespace lab2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CsvManager Testfile = new CsvManager("https://www.youtube.com/watch?v=_z0m7TozqUo");
+            Testfile.ToMatrix();
         }
     }
 }

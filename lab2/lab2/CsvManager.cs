@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
+using System.Transactions;
 
 namespace lab2
 {
@@ -66,7 +67,24 @@ namespace lab2
                     csvs = $"{csvs} {file}";
                 }
             }
+
             return csvs.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public void FromMatrix(string[,] matrix)
+        {
+            using (StreamWriter sw = new StreamWriter(_path))
+            {
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                {
+                    string currentLine = "";
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        currentLine += matrix[i, j].Replace(',', '.') + " ";
+                    }
+                    sw.WriteLine(currentLine);
+                }
+            }
         }
     }
 }

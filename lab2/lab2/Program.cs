@@ -12,7 +12,7 @@ namespace lab2
             string[,] allStudents = csvFile.ToMatrix();
             Utilities.outMatrix(allStudents);
 
-            Utilities.outText("The list of students, who is learning for free:", 30);
+            Utilities.outText("The list of students, who are learning for free:", 30);
             Student[] students = Student.fromMatrix(allStudents);
             Utilities.outStudents(students);
 

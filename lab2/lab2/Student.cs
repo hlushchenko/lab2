@@ -59,5 +59,24 @@ namespace lab2
             return matrix;
         }
 
+        public static Student[] fromMatrix(string[,] matrix) //this function converts array of student to the matrix :)
+        {
+            Student[] students = new Student[matrix.Length / 7];
+            for (int i = 0; i < matrix.Length/7; i++)
+            {
+                if (matrix[i, 6] == "FALSE")
+                {
+                    students[i]._name = matrix[i, 0];
+                    int[] marks = new int[5];
+                    for (int j = 0; j < marks.Length; j++)
+                    {
+                        marks[j] = Convert.ToInt32(matrix[i, j + 1]);
+                    }
+                    students[i].averageMark = calculateAverage(marks);
+                    students[i]._donater = false;
+                }
+            }
+            return students;
+        }
     }
 }

@@ -6,8 +6,10 @@ namespace lab2
     {
         static void Main(string[] args)
         {
-            CsvManager Testfile = new CsvManager("/students1.csv");
-            string[,] test = Testfile.ToMatrix();
+            int[] arr = { 1, 2, 3 };
+            var csvFile = new CsvManager("/students1.csv");
+            string[,] stas = csvFile.ToMatrix();
+            Student[] students = Student.fromMatrix(stas);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace lab2
 {
@@ -61,7 +62,7 @@ namespace lab2
 
         public static Student[] fromMatrix(string[,] matrix) //this function converts array of student to the matrix :)
         {
-            Student[] students = new Student[matrix.Length / 7];
+            List<Student> students = new List<Student>();
             for (int i = 0; i < matrix.Length/7; i++)
             {
                 if (matrix[i, 6] == "FALSE")
@@ -71,10 +72,10 @@ namespace lab2
                     {
                         temp[j] = Convert.ToInt32(matrix[i, j + 1]);
                     }
-                    students[i] = new Student(matrix[i, 0], temp, false);
+                    students.Add(new Student(matrix[i, 0], temp, false));
                 }
             }
-            return students;
+            return students.ToArray();
         }
     }
 }

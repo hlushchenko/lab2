@@ -6,8 +6,8 @@ namespace lab2
     {
         static void Main(string[] args)
         {
-            CsvManager Testfile = new CsvManager("https://www.youtube.com/watch?v=_z0m7TozqUo");
-            Testfile.ToMatrix();
+            CsvManager Testfile = new CsvManager("/students1.csv");
+            string[,] test = Testfile.ToMatrix();
         }
     }
 }

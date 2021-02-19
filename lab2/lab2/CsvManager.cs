@@ -13,15 +13,16 @@ namespace lab2
         public CsvManager(string path)
         {
             _path = path;
-            tableSizes();
+            var sr = new StreamReader(_path); 
+            TableSizes();
         }
 
-        private void tableSizes()
+        private void TableSizes()
         {
             using (var sr = new StreamReader(_path))
             {
                 Length = int.Parse(sr.ReadLine());
-                Width = sr.ReadLine().Split().Length;
+                Width = sr.ReadLine().Split(",", StringSplitOptions.RemoveEmptyEntries).Length;
             }
         }
 
@@ -32,10 +33,11 @@ namespace lab2
                 using (var sr = new StreamReader(_path))
                 {
                     string[,] output = new string[Length, Width];
+                    sr.ReadLine();
                     for  (int i = 0; i < Length; i++)
                     {
-                        string[] currentLine = sr.ReadLine().Split();
-                        for (int j = 0; j < currentLine.Length; j++)
+                        string[] currentLine = sr.ReadLine().Split(",", StringSplitOptions.RemoveEmptyEntries);
+                        for (int j = 0; j < Width; j++)
                         {
                             output[i, j] = currentLine[j];
                         }

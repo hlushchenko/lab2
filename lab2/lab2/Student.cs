@@ -66,14 +66,12 @@ namespace lab2
             {
                 if (matrix[i, 6] == "FALSE")
                 {
-                    students[i]._name = matrix[i, 0];
-                    int[] marks = new int[5];
-                    for (int j = 0; j < marks.Length; j++)
+                    int[] temp = new int[5];
+                    for (int j = 0; j < temp.Length; j++)
                     {
-                        marks[j] = Convert.ToInt32(matrix[i, j + 1]);
+                        temp[j] = Convert.ToInt32(matrix[i, j + 1]);
                     }
-                    students[i].averageMark = calculateAverage(marks);
-                    students[i]._donater = false;
+                    students[i] = new Student(matrix[i, 0], temp, false);
                 }
             }
             return students;

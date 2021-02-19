@@ -15,7 +15,7 @@ namespace lab2
             averageMark = calculateAverage(marks);
             _donater = donater;
         }
-        
+
         private static double calculateAverage(int[] data) //this function was created to calculate the average value of marks :)
         {
             double result = 0;
@@ -29,6 +29,23 @@ namespace lab2
             return result;
         }
 
-        
+        public static void sortStudents(Student[] students)
+        {
+            for (int i = 0; i < students.Length - 1; i++)
+            {
+                if (students[i].averageMark < students[i + 1].averageMark)
+                {
+                    swapStudents(students[i], students[i + 1]);
+                }
+            }
+        }
+
+        private static void swapStudents(Student student1, Student student2)
+        {
+            Student student;
+            student = student1;
+            student1 = student2;
+            student2 = student;
+        }
     }
 }

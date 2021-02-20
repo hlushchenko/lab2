@@ -29,14 +29,14 @@ namespace lab2
             }
         }
 
-        public static void outText(string str, int count)
+        public static void outText(string str, int count) //this function is printing some text and '=' :)
         {
             outEquality(count);
             Console.WriteLine(str);
             outEquality(count);
         }
 
-        private static void outEquality(int count)
+        private static void outEquality(int count) //this function is printing '=' {count} times :)
         {
             for (int i = 0; i < count; i++)
             {

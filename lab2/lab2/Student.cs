@@ -87,7 +87,7 @@ namespace lab2
             return students.ToArray();
         }
 
-        public static Student[] findThoseWhoGetPaid(Student[] students)
+        public static Student[] findThoseWhoGetPaid(Student[] students) //this function shows, who gets money :)
         {
             sortStudents(students);
             List<Student> studentsWhoGetPaid = new List<Student>();

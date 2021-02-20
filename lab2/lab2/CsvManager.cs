@@ -9,14 +9,12 @@ namespace lab2
     public class CsvManager
     {
         private string _path;
-        public int Length;
-        public int Width;
+        public int Length = 0;
+        public int Width = 0;
 
         public CsvManager(string path)
         {
             _path = path;
-            var sr = new StreamReader(_path);
-            TableSizes();
         }
 
         private void TableSizes()
@@ -30,6 +28,7 @@ namespace lab2
 
         public string[,] ToMatrix()
         {
+            TableSizes();
             try
             {
                 using (var sr = new StreamReader(_path))

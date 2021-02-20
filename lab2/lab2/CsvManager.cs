@@ -2,20 +2,19 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
+using System.Transactions;
 
 namespace lab2
 {
     public class CsvManager
     {
         private string _path;
-        public int Length;
-        public int Width;
+        public int Length = 0;
+        public int Width = 0;
 
         public CsvManager(string path)
         {
             _path = path;
-            var sr = new StreamReader(_path);
-            TableSizes();
         }
 
         private void TableSizes()
@@ -29,6 +28,7 @@ namespace lab2
 
         public string[,] ToMatrix()
         {
+            TableSizes();
             try
             {
                 using (var sr = new StreamReader(_path))
@@ -66,7 +66,24 @@ namespace lab2
                     csvs = $"{csvs} {file}";
                 }
             }
+
             return csvs.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        public void FromMatrix(string[,] matrix)
+        {
+            using (StreamWriter sw = new StreamWriter(_path))
+            {
+                for (int i = 0; i < matrix.GetLength(0); i++)
+                {
+                    string currentLine = "";
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        currentLine += matrix[i, j].Replace(',', '.') + " ";
+                    }
+                    sw.WriteLine(currentLine);
+                }
+            }
         }
     }
 }

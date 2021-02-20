@@ -92,12 +92,16 @@ namespace lab2
             sortStudents(students);
             List<Student> studentsWhoGetPaid = new List<Student>();
             int countStudentsWhoGetPaid = Convert.ToInt32(Math.Floor(0.4 * students.Length));
-            Console.WriteLine(countStudentsWhoGetPaid);
             for (int i = 0; i < countStudentsWhoGetPaid; i++)
             {
                 studentsWhoGetPaid.Add(students[i]);
             }
             return studentsWhoGetPaid.ToArray();
+        }
+
+        public static double findMinMark(Student[] students) //this function returns the min avg mark that you need to have to get paid :)
+        {
+            return students[students.Length - 1].averageMark;
         }
     }
 }

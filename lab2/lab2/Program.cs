@@ -20,6 +20,9 @@ namespace lab2
             Student[] studentsWhoGetPaid = Student.findThoseWhoGetPaid(students);
             Utilities.outStudents(studentsWhoGetPaid);
 
+            Utilities.outText("The minimal average mark for getting paid:", 30);
+            Console.WriteLine(Student.findMinMark(studentsWhoGetPaid));
+
             Console.ReadKey();
         }
     }

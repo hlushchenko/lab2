@@ -37,16 +37,20 @@ namespace lab2
 
         public static void sortStudents(Student[] students) //this function is sorting student by their average mark :)
         {
-            for (int i = 0; i < students.Length - 1; i++)
-            {
-                if (students[i].averageMark < students[i + 1].averageMark)
+            for (int i = 0; i < students.Length; i++)
+            {   
+                for (int j = 0; j < students.Length - 1; j++)
                 {
-                    swapStudents(students[i], students[i + 1]);
+                    if (students[j].averageMark < students[j + 1].averageMark)
+                    {
+                        swapStudents(ref students[j], ref students[j + 1]);
+                    }
                 }
             }
+            
         }
 
-        private static void swapStudents(Student student1, Student student2) //this function allows to swap 2 students (necessary for sortStudents function) :)
+        private static void swapStudents(ref Student student1, ref Student student2) //this function allows to swap 2 students (necessary for sortStudents function) :)
         {
             Student student;
             student = student1;
@@ -81,6 +85,19 @@ namespace lab2
                 }
             }
             return students.ToArray();
+        }
+
+        public static Student[] findThoseWhoGetPaid(Student[] students)
+        {
+            sortStudents(students);
+            List<Student> studentsWhoGetPaid = new List<Student>();
+            int countStudentsWhoGetPaid = Convert.ToInt32(Math.Floor(0.4 * students.Length));
+            Console.WriteLine(countStudentsWhoGetPaid);
+            for (int i = 0; i < countStudentsWhoGetPaid; i++)
+            {
+                studentsWhoGetPaid.Add(students[i]);
+            }
+            return studentsWhoGetPaid.ToArray();
         }
     }
 }

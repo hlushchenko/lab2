@@ -1,8 +1,5 @@
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
-using System.Linq;
-using System.Transactions;
 
 namespace lab2
 {
@@ -15,6 +12,11 @@ namespace lab2
         public CsvManager(string path)
         {
             _path = path;
+            FileInfo fi = new FileInfo(_path);
+            if (!fi.Exists)
+            {
+                fi.CreateText();
+            }
         }
 
         private void TableSizes()
@@ -28,9 +30,9 @@ namespace lab2
 
         public string[,] ToMatrix()
         {
-            TableSizes();
             try
             {
+                TableSizes();
                 using (var sr = new StreamReader(_path))
                 {
                     string[,] output = new string[Length, Width];

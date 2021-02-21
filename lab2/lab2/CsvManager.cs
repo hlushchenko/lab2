@@ -29,7 +29,7 @@ namespace lab2
             }
         }
 
-        public void TableSizes()
+        public void TableSizes()    //calculates sizes of the table in csv table
         {
             using (var sr = new StreamReader(_path))
             {
@@ -38,11 +38,9 @@ namespace lab2
             }
         }
 
-        public string[,] ToMatrix()
+        public string[,] ToMatrix() //reads data from file to matrix
         {
-            try
-            {
-                using (var sr = new StreamReader(_path))
+            using (var sr = new StreamReader(_path))
                 {
                     string[,] output = new string[Length, Width];
                     sr.ReadLine();
@@ -57,16 +55,9 @@ namespace lab2
 
                     return output;
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"Incorrect file: \n {e}");
-            }
-
-            return null;
         }
 
-        public static string[,] ToMatrix(CsvManager[] files)
+        public static string[,] ToMatrix(CsvManager[] files)    //puts all data from input files in one matrix
         {
             string[,] output = new string[files.Sum(a => a.Length), files[0].Width];
             int j = 0;
@@ -87,7 +78,7 @@ namespace lab2
             return output;
         }
 
-        public static CsvManager[] FindCsv(string path)
+        public static CsvManager[] FindCsv(string path)     //find all csv files in certain directory
         {
             string[] allfiles = Directory.GetFiles(path);
             string csvs = "";
@@ -109,7 +100,7 @@ namespace lab2
             return filesArray;
         }
 
-        public void FromMatrix(string[,] matrix)
+        public void FromMatrix(string[,] matrix)    //writes data from matrix to file
         {
             using (StreamWriter sw = new StreamWriter(_path))
             {

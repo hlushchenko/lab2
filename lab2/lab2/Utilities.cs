@@ -17,7 +17,7 @@ namespace lab2
                 {
                     temp[j] = Convert.ToInt32(matrix[i, j + 1]);
                 }
-                Console.WriteLine($"{matrix[i, 0]}'s average mark is {Student.calculateAverage(temp)}");
+                Console.WriteLine($"{matrix[i, 0], -25}{Student.calculateAverage(temp)}");
             }
         }
 
@@ -25,7 +25,7 @@ namespace lab2
         {
             for (int i = 0; i < students.Length; i++)
             {
-                Console.WriteLine($"{Student.getName(students[i])}'s average mark is {students[i].averageMark}");
+                Console.WriteLine($"{Student.getName(students[i]), -25}{students[i].averageMark}");
             }
         }
 

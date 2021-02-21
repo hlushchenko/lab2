@@ -47,7 +47,7 @@ namespace lab2
 
         public static void Log(string message, Student[] list, int countEquality = 30)
         {
-            OutText("Those who get a scholarship:", countEquality);
+            OutText(message, countEquality);
             OutStudents(list);
         }
     }

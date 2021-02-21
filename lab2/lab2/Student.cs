@@ -91,8 +91,8 @@ namespace lab2
         {
             SortStudents(students);
             List<Student> studentsWhoGetPaid = new List<Student>();
-            int countStudentsWhoGetPaid = Convert.ToInt32(Math.Floor(0.4 * students.Length));
-            for (int i = 0; i < countStudentsWhoGetPaid; i++)
+            int countScholarship = Convert.ToInt32(Math.Floor(0.4 * students.Length));
+            for (int i = 0; i < countScholarship; i++)
             {
                 studentsWhoGetPaid.Add(students[i]);
             }

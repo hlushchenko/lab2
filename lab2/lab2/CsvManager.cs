@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 
@@ -7,13 +8,18 @@ namespace lab2
     public class CsvManager
     {
         private string _path;
+        public bool Writable;
         public int Length = 0;
         public int Width = 0;
 
-        public CsvManager(string path)
+        public CsvManager(string path, bool  writable = false)
         {
             _path = path;
-            TableSizes();
+            Writable = writable;
+            if (!Writable)
+            {
+                TableSizes();
+            }
         }
 
         public void TableSizes()
@@ -53,7 +59,8 @@ namespace lab2
             return null;
         }
 
-        public static string[,] ToMatrix(CsvManager[] files){
+        public static string[,] ToMatrix(CsvManager[] files)
+        {
             string[,] output = new string[files.Sum(a => a.Length), files[0].Width];
             int j = 0;
             foreach (var file in files)
@@ -64,8 +71,8 @@ namespace lab2
                     for (int i = 0; i < file.Width; i++)
                     {
                         output[j, i] = current[k, i];
-                        
                     }
+
                     j++;
                 }
             }
@@ -84,6 +91,7 @@ namespace lab2
                     csvs = $"{csvs} {file}";
                 }
             }
+
             string[] csvsArray = csvs.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             CsvManager[] filesArray = new CsvManager[csvsArray.Length];
             for (int i = 0; i < csvsArray.Length; i++)
@@ -105,6 +113,7 @@ namespace lab2
                     {
                         currentLine += matrix[i, j].Replace(',', '.') + " ";
                     }
+
                     sw.WriteLine(currentLine);
                 }
             }

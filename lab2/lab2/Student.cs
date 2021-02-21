@@ -58,7 +58,7 @@ namespace lab2
             student2 = student;
         }
 
-        private static string[,] toMatrix(Student[] students) //this function converts array of student to the matrix :)
+        public static string[,] toMatrix(Student[] students) //this function converts array of student to the matrix :)
         {
             string[,] matrix = new string[students.Length, 2];
             for (int i = 0; i < students.Length; i++)

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 
 namespace lab2
 {
@@ -12,14 +13,10 @@ namespace lab2
         public CsvManager(string path)
         {
             _path = path;
-            FileInfo fi = new FileInfo(_path);
-            if (!fi.Exists)
-            {
-                fi.CreateText();
-            }
+            TableSizes();
         }
 
-        private void TableSizes()
+        public void TableSizes()
         {
             using (var sr = new StreamReader(_path))
             {
@@ -32,7 +29,6 @@ namespace lab2
         {
             try
             {
-                TableSizes();
                 using (var sr = new StreamReader(_path))
                 {
                     string[,] output = new string[Length, Width];
@@ -57,7 +53,27 @@ namespace lab2
             return null;
         }
 
-        public static string[] FindCsv(string path)
+        public static string[,] ToMatrix(CsvManager[] files){
+            string[,] output = new string[files.Sum(a => a.Length), files[0].Width];
+            int j = 0;
+            foreach (var file in files)
+            {
+                string[,] current = file.ToMatrix();
+                for (int k = 0; k < file.Length; k++)
+                {
+                    for (int i = 0; i < file.Width; i++)
+                    {
+                        output[j, i] = current[k, i];
+                        
+                    }
+                    j++;
+                }
+            }
+
+            return output;
+        }
+
+        public static CsvManager[] FindCsv(string path)
         {
             string[] allfiles = Directory.GetFiles(path);
             string csvs = "";
@@ -68,8 +84,14 @@ namespace lab2
                     csvs = $"{csvs} {file}";
                 }
             }
+            string[] csvsArray = csvs.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            CsvManager[] filesArray = new CsvManager[csvsArray.Length];
+            for (int i = 0; i < csvsArray.Length; i++)
+            {
+                filesArray[i] = new CsvManager(csvsArray[i]);
+            }
 
-            return csvs.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            return filesArray;
         }
 
         public void FromMatrix(string[,] matrix)

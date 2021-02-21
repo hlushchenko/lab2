@@ -20,6 +20,13 @@ namespace lab2
             {
                 TableSizes();
             }
+            else
+            {
+                if (File.Exists(path))
+                {
+                    using (var file = File.Create(path)) {}
+                }
+            }
         }
 
         public void TableSizes()

@@ -13,16 +13,16 @@ namespace lab2
         public Student(string name, int[] marks, bool donater) //students constructor :)
         {
             _name = name;
-            averageMark = calculateAverage(marks);
+            averageMark = CalculateAverage(marks);
             _donater = donater;
         }
 
-        public static string getName(Student student)
+        public static string GetName(Student student)
         {
             return student._name;
         }
 
-        public static double calculateAverage(int[] data) //this function was created to calculate the average value of marks :)
+        public static double CalculateAverage(int[] data) //this function was created to calculate the average value of marks :)
         {
             double result = 0;
             int sum = 0;
@@ -35,7 +35,7 @@ namespace lab2
             return result;
         }
 
-        public static void sortStudents(Student[] students) //this function is sorting student by their average mark :)
+        public static void SortStudents(Student[] students) //this function is sorting student by their average mark :)
         {
             for (int i = 0; i < students.Length; i++)
             {   
@@ -43,14 +43,14 @@ namespace lab2
                 {
                     if (students[j].averageMark < students[j + 1].averageMark)
                     {
-                        swapStudents(ref students[j], ref students[j + 1]);
+                        SwapStudents(ref students[j], ref students[j + 1]);
                     }
                 }
             }
             
         }
 
-        private static void swapStudents(ref Student student1, ref Student student2) //this function allows to swap 2 students (necessary for sortStudents function) :)
+        private static void SwapStudents(ref Student student1, ref Student student2) //this function allows to swap 2 students (necessary for SortStudents function) :)
         {
             Student student;
             student = student1;
@@ -58,7 +58,7 @@ namespace lab2
             student2 = student;
         }
 
-        public static string[,] toMatrix(Student[] students) //this function converts array of student to the matrix :)
+        public static string[,] ToMatrix(Student[] students) //this function converts array of student to the matrix :)
         {
             string[,] matrix = new string[students.Length, 2];
             for (int i = 0; i < students.Length; i++)
@@ -69,7 +69,7 @@ namespace lab2
             return matrix;
         }
 
-        public static Student[] fromMatrix(string[,] matrix) //this function converts array of student to the matrix :)
+        public static Student[] FromMatrix(string[,] matrix) //this function converts array of student to the matrix :)
         {
             List<Student> students = new List<Student>();
             for (int i = 0; i < matrix.Length/7; i++)
@@ -87,19 +87,19 @@ namespace lab2
             return students.ToArray();
         }
 
-        public static Student[] findThoseWhoGetPaid(Student[] students) //this function shows, who gets money :)
+        public static Student[] Scholarship(Student[] students) //this function shows, who gets money :)
         {
-            sortStudents(students);
+            SortStudents(students);
             List<Student> studentsWhoGetPaid = new List<Student>();
-            int countStudentsWhoGetPaid = Convert.ToInt32(Math.Floor(0.4 * students.Length));
-            for (int i = 0; i < countStudentsWhoGetPaid; i++)
+            int countScholarship = Convert.ToInt32(Math.Floor(0.4 * students.Length));
+            for (int i = 0; i < countScholarship; i++)
             {
                 studentsWhoGetPaid.Add(students[i]);
             }
             return studentsWhoGetPaid.ToArray();
         }
 
-        public static double findMinMark(Student[] students) //this function returns the min avg mark that you need to have to get paid :)
+        public static double FindMinMark(Student[] students) //this function returns the min avg mark that you need to have to get paid :)
         {
             return students[students.Length - 1].averageMark;
         }

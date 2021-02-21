@@ -8,7 +8,7 @@ namespace lab2
 {
     class Utilities
     {
-        public static void outMatrix(string[,] matrix) //this function is printing the name of the student and his average mark :)
+        public static void OutMatrix(string[,] matrix) //this function is printing the name of the student and his average mark :)
         {
             int[] temp = new int[5];
             for (int i = 0; i < matrix.Length / 7; i++)
@@ -17,32 +17,38 @@ namespace lab2
                 {
                     temp[j] = Convert.ToInt32(matrix[i, j + 1]);
                 }
-                Console.WriteLine($"{matrix[i, 0], -25}{Student.calculateAverage(temp)}");
+                Console.WriteLine($"{matrix[i, 0], -25}{Student.CalculateAverage(temp)}");
             }
         }
 
-        public static void outStudents(Student[] students) //this function is printing the name of the student and his average mark, if student is learning for free :)
+        public static void OutStudents(Student[] students) //this function is printing the name of the student and his average mark, if student is learning for free :)
         {
             for (int i = 0; i < students.Length; i++)
             {
-                Console.WriteLine($"{Student.getName(students[i]), -25}{students[i].averageMark}");
+                Console.WriteLine($"{Student.GetName(students[i]), -25}{students[i].averageMark}");
             }
         }
 
-        public static void outText(string str, int count) //this function is printing some text and '=' :)
+        public static void OutText(string str, int count = 30) //this function is printing some text and '=' :)
         {
-            outEquality(count);
+            OutEquality(count);
             Console.WriteLine(str);
-            outEquality(count);
+            OutEquality(count);
         }
 
-        private static void outEquality(int count) //this function is printing '=' {count} times :)
+        private static void OutEquality(int count = 30) //this function is printing '=' {count} times :)
         {
             for (int i = 0; i < count; i++)
             {
                 Console.Write('=');
             }
             Console.Write('\n');
+        }
+
+        public static void Log(string message, Student[] list, int countEquality = 30)
+        {
+            OutText("Those who get a scholarship:", countEquality);
+            OutStudents(list);
         }
     }
 }

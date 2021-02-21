@@ -29,20 +29,26 @@ namespace lab2
             }
         }
 
-        public static void OutText(string str, int count) //this function is printing some text and '=' :)
+        public static void OutText(string str, int count = 30) //this function is printing some text and '=' :)
         {
             OutEquality(count);
             Console.WriteLine(str);
             OutEquality(count);
         }
 
-        private static void OutEquality(int count) //this function is printing '=' {count} times :)
+        private static void OutEquality(int count = 30) //this function is printing '=' {count} times :)
         {
             for (int i = 0; i < count; i++)
             {
                 Console.Write('=');
             }
             Console.Write('\n');
+        }
+
+        public static void Log(string message, Student[] list, int countEquality = 30)
+        {
+            OutText("Those who get a scholarship:", countEquality);
+            OutStudents(list);
         }
     }
 }

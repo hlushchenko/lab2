@@ -6,18 +6,19 @@ namespace lab2
     {
         static void Main(string[] args)
         {
-            Utilities.OutText("Input the directory with .csv files:", 30);
+            Console.WriteLine("Input the directory with .csv files:");
             CsvManager[] files = CsvManager.FindCsv(Console.ReadLine());
 
-            Utilities.OutText("The list of those students who are learning for free:", 30);
             Student[] students = Student.FromMatrix(CsvManager.ToMatrix(files));
-            Utilities.OutStudents(students);
+            Utilities.Log("The list of those students who are learning for free:", students);
 
-            Utilities.OutText("Those who get a scholarship:", 30);
             Student[] scholarship = Student.Scholarship(students);
-            Utilities.OutStudents(scholarship);
+            Utilities.Log("Those who get a scholarship:", scholarship);
 
-            CsvManager output = new CsvManager("/output/output.csv", true);
+            Utilities.OutText("The minimal mark for scholarship:");
+            Console.WriteLine(Student.FindMinMark(scholarship));
+
+            CsvManager output = new CsvManager("/output/rating.csv", true);
             output.FromMatrix(Student.ToMatrix(scholarship));
         }
     }

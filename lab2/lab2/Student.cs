@@ -87,14 +87,17 @@ namespace lab2
             return students.ToArray();
         }
 
-        public static Student[] Scholarship(Student[] students, int percent) //this function shows, who gets money :)
+        public static Student[] Scholarship(Student[] students, int percent, double minimalRating) //this function shows, who gets money :)
         {
             SortStudents(students);
             List<Student> studentsWhoGetPaid = new List<Student>();
             int countScholarship = Convert.ToInt32(Math.Floor(Convert.ToDouble(percent)/100 * students.Length));
             for (int i = 0; i < countScholarship; i++)
             {
-                studentsWhoGetPaid.Add(students[i]);
+                if (students[i].averageMark > minimalRating)
+                {
+                    studentsWhoGetPaid.Add(students[i]);
+                }
             }
             return studentsWhoGetPaid.ToArray();
         }
